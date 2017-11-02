@@ -1,6 +1,7 @@
 package com.example.temperatureconverter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
     private EditText text;
+    public static final String EXTRA_MESSAGE = "None";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,13 @@ public class MainActivity extends Activity {
                     fahrenheitButton.setChecked(false);
                     celsiusButton.setChecked(true);
                 }
+
+
+                Intent k = new Intent(this, ViewResult.class);
+                String message = String
+                        .valueOf(ConverterUtil.convertCelsiusToFahrenheit(inputValue));
+                k.putExtra(EXTRA_MESSAGE, message);
+                startActivity(k);
                 break;
         }
     }
